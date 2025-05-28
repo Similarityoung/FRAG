@@ -1,4 +1,16 @@
 # FRAG pipeline
+
+The codes are associated with the following paper:
+
+>**FRAG: A Flexible Modular Framework for Retrieval-Augmented Generation based on Knowledge Graphs,**[PDF](https://arxiv.org/abs/2501.09957)
+
+>Zengyi Gao, Yukun Cao, Hairu Wang, Ao Ke, Yuan Feng, Xike Xie, S Kevin Zhou     
+>Annual Meeting of the Association for Computational Linguistics (ACL), 2025.
+
+<p align="center">
+<img src="FRAG.pdf" alt="Overview of FRAG." width="100%" />
+</p>
+
 ## Step 0: Data preprocessing
 Get `test_name.jsonl` using PPR algorithm.
 
@@ -16,7 +28,7 @@ python Reason.py
 ```
 
 ## Step 3: FRAG
-Download the Reasoning-aware model from [here](https://huggingface.co/), and run
+Download the Reasoning-aware model from [here](https://huggingface.co/gzy02/ReasoningAwareModule), and run
 ```python
 python FRAG.py
 ```
@@ -32,3 +44,15 @@ After getting the hop prediction for FRAG-Simple and FRAG-Complex, run
 python FRAG_F.py
 ```
 for final FRAG_F prediction.
+
+**Cite our paper:**
+If you find this work is helpful to your research, please consider citing our paper:
+```bibtex
+@inproceedings{gao-FRAG-2025,
+    title = "FRAG: A Flexible Modular Framework for Retrieval-Augmented Generation based on Knowledge Graphs",
+    author = "Zengyi Gao, Yukun Cao, Hairu Wang, Ao Ke, Yuan Feng, Xike Xie, S Kevin Zhou",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2025",
+    year = "2025",
+    publisher = "Association for Computational Linguistics"
+}
+```
