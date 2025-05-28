@@ -8,7 +8,7 @@ The codes are associated with the following paper:
 >Annual Meeting of the Association for Computational Linguistics (ACL), 2025.
 
 <p align="center">
-<img src="FRAG.pdf" alt="Overview of FRAG." width="100%" />
+<img src="FRAG.png" alt="Overview of FRAG." width="100%" />
 </p>
 
 ## Step 0: Data preprocessing
