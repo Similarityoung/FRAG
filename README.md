@@ -2,10 +2,9 @@
 
 The codes are associated with the following paper:
 
->**FRAG: A Flexible Modular Framework for Retrieval-Augmented Generation based on Knowledge Graphs,**[PDF](https://arxiv.org/abs/2501.09957)
-
->Zengyi Gao, Yukun Cao, Hairu Wang, Ao Ke, Yuan Feng, Xike Xie, S Kevin Zhou     
->Annual Meeting of the Association for Computational Linguistics (ACL), 2025.
+>**FRAG: A Flexible Modular Framework for Retrieval-Augmented Generation based on Knowledge Graphs** [[PDF](https://arxiv.org/abs/2501.09957)]  
+> Zengyi Gao, Yukun Cao, Hairu Wang, Ao Ke, Yuan Feng, Xike Xie, S Kevin Zhou     
+> Annual Meeting of the Association for Computational Linguistics (ACL), 2025.
 
 <p align="center">
 <img src="FRAG.png" alt="Overview of FRAG." width="100%" />
