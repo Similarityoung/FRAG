@@ -25,25 +25,12 @@ commercial_models = [
     "gpt-4o-mini-2024-07-18",
 ]
 
-local_models = {
-    "llama3-8b": "/back-up/LLMs/llama3/Meta-Llama-3-8B-Instruct/",
-    "llama3-70b": "/back-up/LLMs/llama3/Meta-Llama-3-70B-Instruct/",
-    "llama2-7b": "/back-up/LLMs/models/Llama-2-7b-chat-hf/",
-    "llama2-70b": "/back-up/LLMs/Llama-2-70b-chat-ms/",
-    "llama2-13b": "/back-up/LLMs/models/Llama-2-13b-chat-hf/",
-}
-
-reasoning_model = "llama3-8b"
+reasoning_model = "llama3:8b-instruct-q5_K_M"
 hop_pred_model = reasoning_model
 max_reasoning_paths = 64
-tensor_parallel_size = 1
-gpu_memory_utilization = 0.4
 temperature = 0.01
 max_tokens = 256
 stop_tokens = ["\n", "<|eot_id|>", "</s>"]
-quantization = None  # "fp8"
-dtype = "auto"  # "bfloat16"
-enforce_eager = True
 # endregion
 
 ############################################

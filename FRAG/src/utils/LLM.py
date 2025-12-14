@@ -1,40 +1,8 @@
 from langchain_community.llms.ollama import Ollama
-import vllm.engine
-import vllm.engine.arg_utils
-from config import reasoning_model, commercial_models, ollama_models, local_models
+from config import reasoning_model, commercial_models, ollama_models
 import config
 from langchain_openai import OpenAI
 from langchain_community.llms.moonshot import Moonshot
-import vllm
-from time import time
-from vllm.engine.arg_utils import EngineArgs
-
-
-class LocalLLM:
-    def __init__(self, model_path):
-        self.sampling_params = vllm.SamplingParams(
-            temperature=config.temperature,
-            max_tokens=config.max_tokens,
-            stop=config.stop_tokens
-        )
-
-        self.llm = vllm.LLM(
-            model=model_path,
-            tensor_parallel_size=config.tensor_parallel_size,
-            gpu_memory_utilization=config.gpu_memory_utilization,
-            trust_remote_code=True,
-            dtype=config.dtype,
-            enforce_eager=config.enforce_eager,
-            quantization=config.quantization
-        )
-
-    def invoke(self, query: str):
-        return self.llm.generate(query, self.sampling_params, use_tqdm=False)[0].outputs[0].text
-
-    def batch_invoke(self, queries: list):
-        outputs = self.llm.generate(
-            queries, self.sampling_params)  # , use_tqdm=False)
-        return [output.outputs[0].text for output in outputs]
 
 
 class LLM:
@@ -42,8 +10,13 @@ class LLM:
         if model is None:
             model = str(reasoning_model)
         self.model = model
-        if model in local_models:
-            self.llm = LocalLLM(local_models[model])
+        
+        if model in ollama_models:
+            self.llm = Ollama(
+                model=model,
+                temperature=config.temperature,
+                num_predict=config.max_tokens
+            )
 
         elif model in commercial_models:
             if model.startswith("gpt"):
@@ -51,22 +24,11 @@ class LLM:
             else:
                 self.llm = Moonshot(model_name=model, temperature=0)
 
-        elif model in ollama_models:
-            self.llm = Ollama(
-                model=model,
-                # num_ctx=8192,
-                temperature=config.temperature,
-                num_predict=config.max_tokens
-            )
-
         else:
-            raise ValueError("Model not supported")
+            raise ValueError(f"Model '{model}' not supported. Available models: {ollama_models + commercial_models}")
 
     def batch_invoke(self, queries):
-        if self.model in local_models:
-            answers = self.llm.batch_invoke(queries)
-        else:
-            answers = [self.llm.invoke(query) for query in queries]
+        answers = [self.llm.invoke(query) for query in queries]
         return answers
 
     def invoke(self, query):
